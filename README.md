@@ -1,4 +1,4 @@
-# COLIBI Services
+# COLIBI services
 
 This repository manages backend services and utilizes the [PANTSBUILD](https://www.pantsbuild.org/) build system for handling the monorepository. You can find more details about [MONOREPO](https://monorepo.tools/) here.
 
