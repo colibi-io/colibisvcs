@@ -16,6 +16,6 @@ fastapi==0.115.0
 grpcio==1.66.2
 ```
 
-To enable dependency resolution, the configuration `enable_resolves = true` must be set to `True` under the Python system configuration. Additionally, set `py_generated_sources_in_resolve = ['python-default']` as described here[here](https://www.pantsbuild.org/stable/reference/goals/export#py_generated_sources_in_resolve).
+To enable dependency resolution, the configuration `enable_resolves = true` must be set to `True` under the Python system configuration. Additionally, set `py_generated_sources_in_resolve = ['python-default']` as described [here](https://www.pantsbuild.org/stable/reference/goals/export#py_generated_sources_in_resolve).
 
 Once these configurations are completed, run `pants export --resolve=python-default` to generate the virtual environment.
