@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package embeddings.v1;
+
+// EmbeddingService defines the gRPC service for managing products and querying embeddings.
+service EmbeddingService {
+  // Create or updates an existing product.
+  rpc CreateProduct(CreateProductRequest) returns (CreateProductResponse);
+  // Queries products based on given query text.
+  rpc QueryProduct(QueryProductRequest) returns (QueryProductResponse);
+}
+
+// CreateProductRequest represents the request to create a new product.
+message CreateProductRequest {
+  Product product = 1; // The product to be created.
+}
+
+// CreateProductResponse represents the response after creating a product.
+message CreateProductResponse {
+  string hashed_store_id = 1; // The hashed store ID.
+  Status status = 2; // The status of the product.
+}
+
+// QueryProductRequest represents the request to query products based on embeddings.
+message QueryProductRequest {
+  string hashed_store_id = 1; // The hashed store ID.
+  string query = 2; // The query string.
+  int32 k = 3; // The number of top results to return.
+}
+
+// QueryProductResponse represents the response after querying products.
+message QueryProductResponse {
+  string hashed_store_id = 1; // The hashed store ID.
+  string query = 2; // The query string.
+  repeated QueryResult results = 3; // The list of query results.
+}
+
+// QueryResult represents a single result from a product query.
+message QueryResult {
+  string content = 1; // The content of the product.
+  float score = 2; // The score of the product.
+  int32 rank = 3; // The rank of the product.
+  string document_id = 4; // The document ID of the product.
+  int32 passage_id = 5; // The passage ID of the product.
+}
+
+// Product represents a product with its details.
+message Product {
+  string hashed_store_id = 1; // The hashed store ID.
+  string text = 2; // The text content of the product.
+}
+
+// Status represents the status of a product.
+enum Status {
+  STATUS_UNSPECIFIED = 0; // Unspecified status.
+  STATUS_RECEIVED = 1; // The product was created.
+  STATUS_FAILED = 2; // The product creation or update failed.
+}

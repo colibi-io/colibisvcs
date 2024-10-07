@@ -1,0 +1,19 @@
+[GLOBAL]
+pants_version = "2.22.0"
+
+backend_packages = [
+    "pants.backend.python",
+    "pants.backend.python.lint.pylint",
+    "pants.backend.codegen.protobuf.python",
+    "pants.backend.codegen.protobuf.lint.buf",
+]
+
+[python]
+interpreter_constraints = [">=3.11,<3.13"]
+enable_resolves = true
+
+[python-protobuf]
+mypy_plugin = true
+
+[export]
+py_generated_sources_in_resolve = ['python-default']
